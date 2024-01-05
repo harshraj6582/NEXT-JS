@@ -1,4 +1,7 @@
 import { NextResponse } from "next/server";
+import { connectDb } from "@/app/helper/db";
+
+connectDb();
 const users = [
     {
     name : "Harsh Rah ",
@@ -21,7 +24,20 @@ return NextResponse.json(users)
 }
 
 
-export function POST(){
+export function POST(request){
+    const body = request.body ;
+    console.log(body);
+    console.log(request.method)
+    request.cookies.set('Harsh Raj IS My Name ', 'false')
+    const data = request.cookies.get('Harsh Raj IS My Name ')
+    console.log(data)
+
+    console.log(request.nextUrl.pathname)
+    console.log(request.nextUrl.searchParams)
+
+    return NextResponse.json({
+        message: "Posting User data", 
+    })
 
 }
 
